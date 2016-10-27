@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name        = 'ansychronous_data_provider'
-	s.version     = '0.0.1'
+	s.version     = '0.0.2'
 	s.date        = '2016-10-26'
 	s.summary     = "Allows the user to update data in the background on a schedule and return the most recent data"
 	s.description = "Allows the user to update data in the background on a schedule and return the most recent data"

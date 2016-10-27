@@ -1,8 +1,3 @@
-require_relative './flexible_column'
-require_relative './print_helper'
-require 'io/console'
-require_relative './terminal_utils'
-
 ##
 # AsynchronousDataProvider allows the user to update data in the background on a schedule and return the most recent
 # data it knows about. The provider will return nil until data is found for the first time
