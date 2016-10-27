@@ -28,10 +28,10 @@ class AsyncDataProvider
 	include Singleton
 
 	def initialize
-		@last_time_retrieved    = nil
-		@time_retrieve_interval = "must be implemented"
-		@mutex                  = Mutex.new
-		@data                   = nil
+		@last_time_retrieved      = nil
+		@time_retrieve_interval   = "must be implemented"
+		@mutex                    = Mutex.new
+		@data                     = nil
 	end
 
 	def get_data(**args)
@@ -44,7 +44,7 @@ class AsyncDataProvider
 					@last_time_retrieved = Time.now
 					@mutex.unlock
 				end
-			end
+			end.abort_on_exception = true
 		end
 
 		return @data
