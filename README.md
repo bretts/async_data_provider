@@ -1,4 +1,4 @@
-# Ansychronous Data Provider
+# Async Data Provider
 
 Allows the user to update data in the background on a schedule and return the most recent data.
 

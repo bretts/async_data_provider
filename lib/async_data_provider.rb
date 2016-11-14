@@ -1,5 +1,5 @@
 ##
-# AsynchronousDataProvider allows the user to update data in the background on a schedule and return the most recent
+# AsyncDataProvider allows the user to update data in the background on a schedule and return the most recent
 # data it knows about. The provider will return nil until data is found for the first time
 #
 # User of this class should subclass it, implement the time_retrieve_interval, and implment update_data.
