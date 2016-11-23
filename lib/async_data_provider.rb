@@ -28,23 +28,30 @@ class AsyncDataProvider
 	include Singleton
 
 	def initialize
-		@last_time_retrieved      = nil
-		@time_retrieve_interval   = "must be implemented"
-		@mutex                    = Mutex.new
-		@data                     = nil
+		@last_time_retrieved       = nil
+		@time_retrieve_interval    = "must be implemented"
+		@mutex                     = Mutex.new
+		@data                      = nil
+
+		# Thread properties
+		@thread_abort_on_exception = true
+		@thread_priority           = nil
 	end
+	attr_accessor :thread_abort_on_exception, :thread_priority
 
 	def get_data(**args)
 		if(@last_time_retrieved.nil? || (Time.now - @last_time_retrieved >= @time_retrieve_interval))
 			@last_time_retrieved = Time.now
 
-			Thread.new do
+			t = Thread.new do
 				if(@mutex.try_lock)
 					@data = update_data(args)
 					@last_time_retrieved = Time.now
 					@mutex.unlock
 				end
-			end.abort_on_exception = true
+			end
+			t.abort_on_exception = @thread_abort_on_exception
+			t.priority           = @thread_priority if @thread_priority
 		end
 
 		return @data
